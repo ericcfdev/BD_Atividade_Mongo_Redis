@@ -1,0 +1,93 @@
+# README
+
+Criado em: 8 de junho de 2026 21:19
+
+# Conexão Python com NoSQL — MongoDB e Redis
+
+Atividade prática da disciplina de Banco de Dados, desenvolvida em Python utilizando MongoDB Atlas e Redis Cloud. O script realiza operações de CRUD no MongoDB e demonstra o uso de cache com Redis.
+
+---
+
+## Tecnologias utilizadas
+
+- Python 3.13
+- [pymongo](https://pymongo.readthedocs.io/) — driver oficial do MongoDB para Python
+- [redis-py](https://redis-py.readthedocs.io/) — cliente Redis para Python
+
+---
+
+## Instalação das dependências
+
+```bash
+pip install pymongo redis
+```
+
+---
+
+## Configuração
+
+Abra o arquivo `main.py` e substitua as variáveis com suas credenciais:
+
+```python
+MONGO_URI = "mongodb+srv://<usuario>:<senha>@<cluster>.mongodb.net/?appName=<app>"
+REDIS_HOST = "<host>"
+REDIS_PORT = <porta>
+REDIS_PASS = "<senha>"
+```
+
+### MongoDB Atlas
+
+1. Acesse [mongodb.com/atlas](https://www.mongodb.com/atlas) e crie uma conta gratuita
+2. Crie um cluster no plano **M0 (Free)**
+3. Em **Database Access**, crie um usuário com senha
+4. Em **Network Access**, adicione `0.0.0.0/0` para liberar acesso
+5. Copie a URI de conexão em **Connect > Drivers**
+
+### Redis Cloud
+
+1. Acesse [redis.io/cloud](https://redis.io/cloud) e crie uma conta gratuita
+2. Crie um banco no plano **30MB Free**
+3. Copie o **Host**, **Port** e **Password** no painel do banco
+
+---
+
+## Execução
+
+```bash
+python AtividadeBDMongoRedis - Eric CF.py
+```
+
+---
+
+## Funcionalidades
+
+O script exibe um menu interativo com as seguintes opções:
+
+| Opção | Descrição |
+| --- | --- |
+| 1 | Inserir 3 produtos no MongoDB (Mouse, Teclado, Monitor) |
+| 2 | Consultar produtos com preço acima de um valor informado |
+| 3 | Atualizar o preço de um produto pelo nome |
+| 4 | Remover todos os produtos de uma categoria |
+| 5 | Salvar mensagem de boas-vindas no Redis (`mensagem:inicio`) |
+| 6 | Salvar dados de usuário em hash no Redis (`usuario:1`) |
+| 7 | Registrar e exibir logs de acesso com timestamp no Redis |
+| 8 | Buscar produto por nome com cache Redis (TTL de 60s) |
+| 0 | Encerrar o programa |
+
+---
+
+## Estrutura do projeto
+
+```
+├── AtividadeBDMongoRedis - Eric CF.py       # Script principal
+└── README.md     # Documentação
+```
+
+---
+
+## Observações
+
+- O banco de dados utilizado no MongoDB é `desafio_nosql` e a coleção é `produtos`
+- O cache Redis armazena produtos no formato `produto:{nome}` com expiração de 60 segundos
+- Exceções de conexão e autenticação são tratadas com `try/except` nos dois bancos
